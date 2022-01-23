@@ -7,10 +7,11 @@ import Signup from '../screens/Signup';
 import Tabs from '../screens/Tabs';
 import {PRIMARY, WHITE} from '../utils/Theme';
 import BookNow from '../screens/BookNow';
+import Loading from '../screens/Loading';
 
 const Stack = createStackNavigator();
 
-const Root = () => {
+const Root = ({isAuthenticated}) => {
   return (
     <Stack.Navigator
       screenOptions={{
@@ -22,13 +23,11 @@ const Root = () => {
         // header: props => <Header {...props} />,
         headerShown: false,
       }}
-      // initial="Signin"
-    >
-      <Stack.Screen name="Signin" component={Signin} />
-
+      initialRouteName={isAuthenticated ? 'Tabs' : 'Signin'}>
+      <Stack.Screen name="Loading" component={Loading} />
       <Stack.Screen name="Tabs" component={Tabs} />
       <Stack.Screen name="BookNow" component={BookNow} />
-
+      <Stack.Screen name="Signin" component={Signin} />
       <Stack.Screen name="Signup" component={Signup} />
     </Stack.Navigator>
   );

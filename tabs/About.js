@@ -1,11 +1,23 @@
 import {StyleSheet, Text, View} from 'react-native';
 import React from 'react';
+import {Button, Layout} from '@ui-kitten/components';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
-const About = () => {
+const About = ({navigation}) => {
   return (
-    <View>
-      <Text>About Screen </Text>
-    </View>
+    <Layout
+      style={{
+        flex: 1,
+        justifyContent: 'center',
+      }}>
+      <Button
+        onPress={() => {
+          AsyncStorage.removeItem('@jwt_key');
+          navigation.navigate('Signin');
+        }}>
+        Logout
+      </Button>
+    </Layout>
   );
 };
 
